@@ -1,9 +1,11 @@
 package com.jgdBoot.eCommBoot;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 //write DB access methods
 
@@ -15,10 +17,11 @@ public class ProductService {
     private ProductRepository productRepository;
     public List<Product> allProducts(){
 
-        List<Product> resList = productRepository.findAll();
-
-
         //findAll is method inside MongoRepository class
         return productRepository.findAll();
+    }
+
+    public Optional<Product> singleProduct(ObjectId id){
+        return productRepository.findById(id);
     }
 }
